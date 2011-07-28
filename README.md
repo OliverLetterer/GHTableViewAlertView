@@ -5,7 +5,7 @@
 
 I think the best way to use **GHTableViewAlertView** is to
 
-* subclass GHTableViewAlertView
+* subclass **GHTableViewAlertView**
 
 *overwrite
 
