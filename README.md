@@ -7,7 +7,7 @@ I think the best way to use **GHTableViewAlertView** is to
 
 * subclass **GHTableViewAlertView**
 
-*overwrite
+* overwrite
 
 ```objective-c
 - (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
