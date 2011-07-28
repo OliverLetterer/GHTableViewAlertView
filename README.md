@@ -21,7 +21,7 @@ I think the best way to use **GHTableViewAlertView** is to
 }
 ```
 
-* implement the **UITableViewDelegate** and **UITableViewDataSource**.
+* implement the **UITableViewDelegate** and **UITableViewDataSource** protocol.
 
 ## Screenshot
 <img src="https://github.com/OliverLetterer/GHTableViewAlertView/raw/master/Screenshots/1.png">
