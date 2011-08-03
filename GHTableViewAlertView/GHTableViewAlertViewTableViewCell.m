@@ -9,6 +9,7 @@
 #import "GHTableViewAlertViewTableViewCell.h"
 
 
+
 @implementation GHTableViewAlertViewTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

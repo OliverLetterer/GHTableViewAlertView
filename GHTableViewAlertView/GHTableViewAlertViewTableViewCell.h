@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHTableViewAlertViewTableViewCellSeperatorView.h"
-
 
 @interface GHTableViewAlertViewTableViewCell : UITableViewCell {
     UIView *_topSeperatorView;
