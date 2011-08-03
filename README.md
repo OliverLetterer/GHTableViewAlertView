@@ -6,8 +6,6 @@
 I think the best way to use **GHTableViewAlertView** is to
 
 * subclass **GHTableViewAlertView**
-
-* overwrite
 * implement the **UITableViewDelegate** and **UITableViewDataSource** protocol.
 * make sure that you return an instance or subclass of `GHTableViewAlertViewTableViewCell` in `tableView:tableView:cellForRowAtIndexPath:`
 
