@@ -11,9 +11,24 @@
 
 @implementation GHTableViewAlertViewTableViewBackgroundView
 
-- (void)setFrame:(CGRect)frame {
-	[super setFrame:frame];
-	[super setNeedsDisplay];
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.layer.needsDisplayOnBoundsChange = YES;
+        
+        UIColor *startColor = [UIColor whiteColor];
+        UIColor *endColor = [UIColor colorWithWhite:0.75f alpha:1.0f];
+        
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+        CGFloat locations[] = { 0.0, 1.0 };
+        
+        NSArray *colors = [NSArray arrayWithObjects:(__bridge id)startColor.CGColor, (__bridge id)endColor.CGColor, nil];
+        
+        _gradient = CGGradientCreateWithColors(colorSpace, 
+                                                            (__bridge CFArrayRef)colors, locations);
+        
+        CGColorSpaceRelease(colorSpace);
+    }
+    return self;
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -22,29 +37,16 @@
     // Drawing code.
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
-	UIColor *startColor = [UIColor whiteColor];
-	UIColor *endColor = [UIColor colorWithWhite:175.0/255.0 alpha:1.0];
-	
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-    CGFloat locations[] = { 0.0, 1.0 };
-	
-    NSArray *colors = [NSArray arrayWithObjects:(__bridge id)startColor.CGColor, (__bridge id)endColor.CGColor, nil];
-	
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, 
-														(__bridge CFArrayRef) colors, locations);
-	
-    // More coming... 
 	CGPoint startPoint = CGPointMake(CGRectGetMidX(super.bounds), CGRectGetMinY(super.bounds));
 	CGPoint endPoint = CGPointMake(CGRectGetMidX(super.bounds), CGRectGetMaxY(super.bounds));
 	
-	CGContextSaveGState(context);
-	CGContextAddRect(context, rect);
-	CGContextClip(context);
-	CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-	CGContextRestoreGState(context);
-	
-	CGGradientRelease(gradient);
-	CGColorSpaceRelease(colorSpace);
+	CGContextDrawLinearGradient(context, _gradient, startPoint, endPoint, 0);
+}
+
+- (void)dealloc {
+    if (_gradient) {
+        CGGradientRelease(_gradient);
+    }
 }
 
 @end

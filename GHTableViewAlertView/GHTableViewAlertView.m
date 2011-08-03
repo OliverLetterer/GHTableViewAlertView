@@ -27,24 +27,30 @@
 		_tableView.backgroundColor = [UIColor whiteColor];
 		[self addSubview:_tableView];
         _tableView.backgroundView = [[GHTableViewAlertViewTableViewBackgroundView alloc] initWithFrame:_tableView.bounds];
-		
-		UIColor *darkShadowColor = [UIColor colorWithWhite:0.5 alpha:0.5];
-		UIColor *lightShadowColor = [UIColor colorWithWhite:0.0 alpha:0.0];
-		
-		CAGradientLayer *layer = [CAGradientLayer layer];
-		layer.colors = [NSArray arrayWithObjects:
-						(__bridge id)darkShadowColor.CGColor, (__bridge id)lightShadowColor.CGColor,
-						(__bridge id)lightShadowColor.CGColor, (__bridge id)darkShadowColor.CGColor, 
-						nil];
-		layer.locations = [NSArray arrayWithObjects:
-						   [NSNumber numberWithFloat:0.0f], [NSNumber numberWithFloat:0.05f],
-						   [NSNumber numberWithFloat:0.98f], [NSNumber numberWithFloat:1.0f],
-						   nil];
-		layer.frame = _tableView.frame;
-		layer.cornerRadius = _tableView.layer.cornerRadius;
-		[self.layer addSublayer:layer];
+		_tableView.delegate = self;
+        
+        UIImage *image = [[UIImage imageNamed:@"GHAlertViewOverlayImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0f, 5.0f, 6.0f, 5.0f)];
+        _overlayImageView = [[UIImageView alloc] initWithImage:image];
+        _overlayImageView.frame = _tableView.bounds;
+        [_tableView addSubview:_overlayImageView];
     }
     return self;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    _overlayImageView.frame = _tableView.bounds;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
 }
 
 @end

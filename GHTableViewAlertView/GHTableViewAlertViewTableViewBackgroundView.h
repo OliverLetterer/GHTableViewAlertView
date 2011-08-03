@@ -10,6 +10,7 @@
 
 
 @interface GHTableViewAlertViewTableViewBackgroundView : UIView {
+    CGGradientRef _gradient;    // retained
 }
 
 @end

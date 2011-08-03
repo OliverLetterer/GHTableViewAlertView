@@ -10,8 +10,9 @@
 #import "GHTableViewAlertViewTableViewBackgroundView.h"
 #import "GHTableViewAlertViewTableViewCell.h"
 
-@interface GHTableViewAlertView : UIAlertView {
+@interface GHTableViewAlertView : UIAlertView <UITableViewDelegate, UITableViewDataSource> {
 	UITableView *_tableView;
+    UIImageView *_overlayImageView;
 }
 
 @property (nonatomic, retain, readonly) UITableView *tableView;
