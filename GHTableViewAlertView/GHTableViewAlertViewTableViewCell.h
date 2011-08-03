@@ -11,10 +11,8 @@
 
 
 @interface GHTableViewAlertViewTableViewCell : UITableViewCell {
-	UIActivityIndicatorView *_activityIndicatorView;
-	GHTableViewAlertViewTableViewCellSeperatorView *_seperatorView;
+    UIView *_topSeperatorView;
+    UIView *_bottomSeperatorView;
 }
-
-@property (nonatomic, readonly) UIActivityIndicatorView *activityIndicatorView;
 
 @end

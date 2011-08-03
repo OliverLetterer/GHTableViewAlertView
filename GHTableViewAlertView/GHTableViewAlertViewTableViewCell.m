@@ -11,59 +11,33 @@
 
 @implementation GHTableViewAlertViewTableViewCell
 
-@synthesize activityIndicatorView=_activityIndicatorView;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // Initialization code.
-		_activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-		[self addSubview:_activityIndicatorView];
-		_activityIndicatorView.hidesWhenStopped = YES;
-		[_activityIndicatorView stopAnimating];
-		
-		_seperatorView = [[GHTableViewAlertViewTableViewCellSeperatorView alloc] initWithFrame:CGRectZero];
-		[self.contentView addSubview:_seperatorView];
+        self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.backgroundView.backgroundColor = [UIColor clearColor];
+        
+        _topSeperatorView = [[UIView alloc] initWithFrame:CGRectZero];
+        _topSeperatorView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
+        [self.backgroundView addSubview:_topSeperatorView];
+        
+        _bottomSeperatorView = [[UIView alloc] initWithFrame:CGRectZero];
+        _bottomSeperatorView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.25f];
+        [self.backgroundView addSubview:_bottomSeperatorView];
         
         self.textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-		self.backgroundView.backgroundColor = [UIColor clearColor];
 	}
     return self;
 }
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	_activityIndicatorView.center = CGPointMake(self.bounds.size.width - _activityIndicatorView.bounds.size.width - 5.0f, self.bounds.size.height/2.0f);
-	_seperatorView.frame = CGRectMake(0.0f, self.bounds.size.height-2.0f, self.bounds.size.width, 2.0f);
+    
+    static CGFloat seperatorHeight = 1.0f;
+    _topSeperatorView.frame = CGRectMake(0.0f, -seperatorHeight/2.0f, CGRectGetWidth(self.backgroundView.bounds), seperatorHeight);
+    _bottomSeperatorView.frame = CGRectMake(0.0f, CGRectGetHeight(self.backgroundView.bounds) - seperatorHeight/2.0f, CGRectGetWidth(self.backgroundView.bounds), seperatorHeight);
     
     self.imageView.frame = CGRectInset(self.imageView.frame, 4.0f, 4.0f);
-}
-
-- (void)prepareForReuse {
-	[super prepareForReuse];
-	[_activityIndicatorView stopAnimating];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state.
-	if (selected) {
-		_activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-	} else {
-		_activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-	}
-}
-
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-	[super setHighlighted:highlighted animated:animated];
-	if (highlighted) {
-		_activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-	} else {
-		_activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-	}
 }
 
 @end
