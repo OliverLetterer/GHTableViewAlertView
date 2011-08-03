@@ -13,7 +13,6 @@
 
 
 @implementation GHTableViewAlertView
-
 @synthesize tableView=_tableView;
 
 #pragma mark -
