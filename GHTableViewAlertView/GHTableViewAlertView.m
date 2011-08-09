@@ -29,7 +29,7 @@
 		[self addSubview:_tableView];
         _tableView.backgroundView = [[GHTableViewAlertViewTableViewBackgroundView alloc] initWithFrame:_tableView.bounds];
         
-        UIImage *image = [[UIImage imageNamed:@"GHAlertViewOverlayImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0f, 5.0f, 6.0f, 5.0f)];
+        UIImage *image = [[UIImage imageNamed:@"GHTableViewAlertView.bundle/GHAlertViewOverlayImage.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(7.0f, 5.0f, 6.0f, 5.0f)];
         _overlayImageView = [[UIImageView alloc] initWithImage:image];
         _overlayImageView.frame = _tableView.bounds;
         [_tableView addSubview:_overlayImageView];
